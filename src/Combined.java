@@ -1,0 +1,47 @@
+public class Combined
+{
+	/**
+	* This method takes the head Node of two sorted singly-linked lists and
+	* combines them into a single, sorted doubly-linked list. This method
+	* should create the new, sorted doubly-linked list without destroying
+	* the information within or the ordering of the two singly-linked lists
+	* which were passed in.
+	* <p>
+	* The elements in the two singly-linked lists passed in are 
+	* guaranteed to be congruent and comparable with the other
+	* You may assume that you can use the Comparable interface between
+	* the elements of the two singly-linked lists which has been passed
+	* in with no conflicts.
+	*
+	* @param  list1 the head Node of one sorted singly-linked list
+	* @param  list2 the head Node of the other sorted singly-linked list
+	* @return       the DoubleNode at the head of the combined and sorted
+	*				doubly-linked list
+	* @see          Comparable
+	*/
+	@SuppressWarnings("unchecked")
+	public static DoubleNode<Comparable> combineSorted(Node<Comparable> list1, Node<Comparable> list2)
+	{
+		Node<Comparable> currNodeFromListOne =  list1;
+		Node<Comparable> currNodeFromListTwo = list2;
+
+		DoubleNode<Comparable> sortedList = new DoubleNode<>();
+		DoubleNode<Comparable> currNode = sortedList;
+
+
+		return sortedList;
+	}
+
+
+	public static void main(String[] args)
+	{
+		Node<Comparable> list01_1 = new Node<Comparable>(Integer.valueOf(3), new Node<Comparable>(Integer.valueOf(6), new Node<Comparable>(Integer.valueOf(7), new Node<Comparable>(Integer.valueOf(9), new Node<Comparable>(Integer.valueOf(10))))));
+		Node<Comparable> list01_2 = new Node<Comparable>(Integer.valueOf(1), new Node<Comparable>(Integer.valueOf(2), new Node<Comparable>(Integer.valueOf(5), new Node<Comparable>(Integer.valueOf(8), new Node<Comparable>(Integer.valueOf(9))))));
+
+		DoubleNode<Comparable> currNode = combineSorted(list01_1, list01_2);
+		while (currNode != null) {
+			System.out.println(currNode.getElement());
+			currNode = currNode.getNext();
+		}
+	}
+}
