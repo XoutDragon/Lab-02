@@ -22,14 +22,82 @@ public class Combined
 	@SuppressWarnings("unchecked")
 	public static DoubleNode<Comparable> combineSorted(Node<Comparable> list1, Node<Comparable> list2)
 	{
-		Node<Comparable> currNodeFromListOne =  list1;
-		Node<Comparable> currNodeFromListTwo = list2;
+		Node<Comparable> temp1 = list1;
+		Node<Comparable> temp2 = list2;
 
-		DoubleNode<Comparable> sortedList = new DoubleNode<>();
-		DoubleNode<Comparable> currNode = sortedList;
+		DoubleNode<Comparable> head = null;
+		DoubleNode<Comparable> currNode = head;
 
+		while (temp1 != null || temp2 != null) {
+			if (temp1 == null) {
+				if (head == null) {
+					head = new DoubleNode<>(temp2.getElement(), null);
 
-		return sortedList;
+					temp2 = temp2.getNext();
+
+					currNode = head;
+					continue;
+				}
+				DoubleNode<Comparable> nextNode = new DoubleNode<>(temp2.getElement(), currNode, null);
+
+				temp2 = temp2.getNext();
+
+				currNode.setNext(nextNode);
+				currNode = currNode.getNext();
+			} else if (temp2 == null) {
+				if (head == null) {
+					head = new DoubleNode<>(temp1.getElement(), null);
+
+					temp1 = temp1.getNext();
+
+					currNode = head;
+					continue;
+				}
+				DoubleNode<Comparable> nextNode = new DoubleNode<>(temp1.getElement(), currNode, null);
+
+				temp1 = temp1.getNext();
+
+				currNode.setNext(nextNode);
+				currNode = currNode.getNext();
+			}
+			else {
+				int result = temp1.getElement().compareTo(temp2.getElement());
+
+				if (result > 0) {
+					if (head == null) {
+						head = new DoubleNode<>(temp2.getElement(), null);
+
+						temp2 = temp2.getNext();
+
+						currNode = head;
+						continue;
+					}
+					DoubleNode<Comparable> nextNode = new DoubleNode<>(temp2.getElement(), currNode, null);
+					temp2 = temp2.getNext();
+
+					currNode.setNext(nextNode);
+					currNode = currNode.getNext();
+
+				} else {
+					if (head == null) {
+						head = new DoubleNode<>(temp1.getElement(), null);
+
+						temp1 = temp1.getNext();
+
+						currNode = head;
+						continue;
+					}
+					DoubleNode<Comparable> nextNode = new DoubleNode<>(temp1.getElement(), currNode, null);
+
+					temp1 = temp1.getNext();
+
+					currNode.setNext(nextNode);
+					currNode = currNode.getNext();
+				}
+			}
+		}
+
+		return head;
 	}
 
 
@@ -37,11 +105,23 @@ public class Combined
 	{
 		Node<Comparable> list01_1 = new Node<Comparable>(Integer.valueOf(3), new Node<Comparable>(Integer.valueOf(6), new Node<Comparable>(Integer.valueOf(7), new Node<Comparable>(Integer.valueOf(9), new Node<Comparable>(Integer.valueOf(10))))));
 		Node<Comparable> list01_2 = new Node<Comparable>(Integer.valueOf(1), new Node<Comparable>(Integer.valueOf(2), new Node<Comparable>(Integer.valueOf(5), new Node<Comparable>(Integer.valueOf(8), new Node<Comparable>(Integer.valueOf(9))))));
-
 		DoubleNode<Comparable> currNode = combineSorted(list01_1, list01_2);
+
 		while (currNode != null) {
 			System.out.println(currNode.getElement());
 			currNode = currNode.getNext();
+		}
+
+		System.out.println("----------------------------------------------------------------");
+
+		Node<Comparable> list02_1 = new Node<Comparable>("Connery", new Node<Comparable>("Elba", new Node<Comparable>("Moore", new Node<Comparable>("Old Connery", null))));
+		Node<Comparable> list02_2 = new Node<Comparable>("Allen", new Node<Comparable>("Brosnan", new Node<Comparable>("Craig", new Node<Comparable>("Dalton", new Node<Comparable>("Lazenby", null)))));
+
+		DoubleNode<Comparable> currNode1 = combineSorted(list02_1, list02_2);
+
+		while (currNode1 != null) {
+			System.out.println(currNode1.getElement());
+			currNode1 = currNode1.getNext();
 		}
 	}
 }

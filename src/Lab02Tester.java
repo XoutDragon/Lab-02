@@ -27,18 +27,18 @@ public class Lab02Tester
 			//B) Move the currentNode to the next node
 			currentNode = currentNode.getNext();
 		}
-
+		
 		//II) If we are here, then we got through the entire linked list
 		//       so return true
 		return true;
 	}
 
-
+	
 	/**
 	* This method takes a reference to a node and determines if the elements in
 	* the list are in order (either non-decreasing or non-increasing.
 	* <p>
-	* <b>NOTE:</b> We can effectively move through either a singly or doubly
+	* <b>NOTE:</b> We can effectively move through either a singly or doubly 
 	* linked list using only the getNext method and because of the object
 	* hierarchy, we can simply treat this list as singly linked for output
 	* purposes.
@@ -75,7 +75,7 @@ public class Lab02Tester
 				Node<Comparable> nextNode = (Node<Comparable>)currentNode.getNext();
 				Comparable currentElement = currentNode.getElement();
 				Comparable nextElement    = nextNode.getElement();
-
+				
 				//1) If the list is increasing and the element in the current node
 				//       is greater than the element in the next, return False
 				if(listIncreasing && (currentElement.compareTo(nextElement)) > 0)
@@ -86,7 +86,7 @@ public class Lab02Tester
 				else if(!listIncreasing && (currentElement.compareTo(nextElement)) < 0)
 					return false;
 			}
-
+			
 			//C) Move the currentNode to the next node
 			currentNode = (Node<Comparable>)currentNode.getNext();
 		}
@@ -96,12 +96,12 @@ public class Lab02Tester
 		return true;
 	}
 
-
+	
 	/**
 	* This method takes the head node of a linked list and returns the contents
 	* of the list formatted for output.
 	* <p>
-	* <b>NOTE:</b> We can effectively move through either a singly or doubly
+	* <b>NOTE:</b> We can effectively move through either a singly or doubly 
 	* linked list using only the getNext method and because of the object
 	* hierarchy, we can simply treat this list as singly linked for output
 	* purposes.
@@ -117,10 +117,10 @@ public class Lab02Tester
 
 		//II) For each index in the linked list and while the current node is not null
 		for(int index = 0; currentNode != null; index++)
-		{
+		{	
 			//A) Add the index to the output string
 			outputString += "[" + index + "] :\t";
-
+			
 			//B) Add the element to the output string followed by an arrow
 			outputString += currentNode.getElement().toString() + " ->\n";
 
@@ -141,7 +141,7 @@ public class Lab02Tester
 		Node<Comparable> headNum, headString;
 		Scanner keyboard = new Scanner(System.in);
 		String input = "";
-
+		
 		boolean pause = false;
 
 		//I) Test the elements from the insertSorted function for ints
@@ -162,7 +162,7 @@ public class Lab02Tester
 		//Middle
 		headNum = Sorted.insertSorted(headNum, Integer.valueOf(4));
 		System.out.println(Lab02Tester.listOutput(headNum));
-
+		
 		if(pause)
 			input = keyboard.nextLine();
 		else
@@ -181,7 +181,7 @@ public class Lab02Tester
 
 		headNum = Sorted.insertSorted(headNum, Integer.valueOf(10));
 		System.out.println(Lab02Tester.listOutput(headNum));
-
+		
 		if(pause)
 			input = keyboard.nextLine();
 		else
@@ -199,7 +199,7 @@ public class Lab02Tester
 
 		headNum = Sorted.insertSorted(headNum, Integer.valueOf(6));
 		System.out.println(Lab02Tester.listOutput(headNum));
-
+		
 		if(pause)
 			input = keyboard.nextLine();
 		else
@@ -213,7 +213,7 @@ public class Lab02Tester
 
 		System.out.println("Singly-Linked:\t\t" + (Lab02Tester.listValid(headNum, Node.class)));
 		System.out.println("Ordered Correctly:\t" + (Lab02Tester.listOrdered(headNum)));
-
+		
 		if(pause)
 			input = keyboard.nextLine();
 		else
@@ -238,7 +238,7 @@ public class Lab02Tester
 		//End
 		headString = Sorted.insertSorted(headString, "Yoda");
 		System.out.println(Lab02Tester.listOutput(headString));
-
+		
 		if(pause)
 			input = keyboard.nextLine();
 		else
@@ -263,7 +263,7 @@ public class Lab02Tester
 		//Middle
 		headString = Sorted.insertSorted(headString, "Chewie");
 		System.out.println(Lab02Tester.listOutput(headString));
-
+		
 		if(pause)
 			input = keyboard.nextLine();
 		else
@@ -277,7 +277,7 @@ public class Lab02Tester
 
 		System.out.println("Singly-Linked:\t\t" + (Lab02Tester.listValid(headString, Node.class)));
 		System.out.println("Ordered Correctly:\t" + (Lab02Tester.listOrdered(headString)));
-
+		
 		if(pause)
 			input = keyboard.nextLine();
 		else
@@ -303,46 +303,46 @@ public class Lab02Tester
 			input = keyboard.nextLine();
 		else
 			System.out.println();
-
+			
 		System.out.println("--------------------------------------------------------------------");
 
 		//Reversed
 		DoubleNode<Comparable> dlist02Num = Combined.combineSorted(list01_2, list01_1);
 		System.out.println(Lab02Tester.listOutput(dlist02Num));
-
+		
 		if(pause)
 			input = keyboard.nextLine();
 		else
 			System.out.println();
-
+			
 		System.out.println("--------------------------------------------------------------------");
 
 		//List 2 empty
 		DoubleNode<Comparable> dlist03Num = Combined.combineSorted(list01_1, null);
 		System.out.println(Lab02Tester.listOutput(dlist03Num));
-
+		
 		if(pause)
 			input = keyboard.nextLine();
 		else
 			System.out.println();
-
+			
 		System.out.println("--------------------------------------------------------------------");
 
 		//List 1 empty
 		DoubleNode<Comparable> dlist04Num = Combined.combineSorted(null, list01_2);
 		System.out.println(Lab02Tester.listOutput(dlist04Num));
-
+		
 		if(pause)
 			input = keyboard.nextLine();
 		else
 			System.out.println();
-
+			
 		System.out.println("--------------------------------------------------------------------\n");
 
 		//Both lists empty
 		DoubleNode<Comparable> dlist05Num = Combined.combineSorted(null, null);
 		System.out.println(dlist05Num);
-
+		
 		if(pause)
 			input = keyboard.nextLine();
 		else
@@ -367,7 +367,7 @@ public class Lab02Tester
 		System.out.println("\t\t\t" + Lab02Tester.listOrdered(dlist03Num));
 		System.out.println("\t\t\t" + Lab02Tester.listOrdered(dlist04Num));
 		System.out.println("\t\t\t" + Lab02Tester.listOrdered(dlist05Num));
-
+		
 		if(pause)
 			input = keyboard.nextLine();
 		else
@@ -388,40 +388,40 @@ public class Lab02Tester
 		//Standard
 		DoubleNode<Comparable> dlist01Str = Combined.combineSorted(list02_1, list02_2);
 		System.out.println(Lab02Tester.listOutput(dlist01Str));
-
+		
 		if(pause)
 			input = keyboard.nextLine();
 		else
 			System.out.println();
-
+			
 		System.out.println("--------------------------------------------------------------------");
 
 		//Reversed
 		DoubleNode<Comparable> dlist02Str = Combined.combineSorted(list02_2, list02_1);
 		System.out.println(Lab02Tester.listOutput(dlist02Str));
-
+		
 		if(pause)
 			input = keyboard.nextLine();
 		else
 			System.out.println();
-
+			
 		System.out.println("--------------------------------------------------------------------");
 
 		//List 2 empty
 		DoubleNode<Comparable> dlist03Str = Combined.combineSorted(list02_1, null);
 		System.out.println(Lab02Tester.listOutput(dlist03Str));
-
+		
 		if(pause)
 			input = keyboard.nextLine();
 		else
 			System.out.println();
-
+			
 		System.out.println("--------------------------------------------------------------------");
 
 		//List 1 empty
 		DoubleNode<Comparable> dlist04Str = Combined.combineSorted(null, list02_2);
 		System.out.println(Lab02Tester.listOutput(dlist04Str));
-
+		
 		if(pause)
 			input = keyboard.nextLine();
 		else
@@ -444,7 +444,7 @@ public class Lab02Tester
 		System.out.println("\t\t\t" + Lab02Tester.listOrdered((Node<Comparable>)dlist02Str));
 		System.out.println("\t\t\t" + Lab02Tester.listOrdered((Node<Comparable>)dlist03Str));
 		System.out.println("\t\t\t" + Lab02Tester.listOrdered((Node<Comparable>)dlist04Str));
-
+		
 		if(pause)
 			input = keyboard.nextLine();
 		else
@@ -466,12 +466,12 @@ public class Lab02Tester
 			dlist01Num_tail = dlist01Num_tail.getPrevious();
 		}
 		System.out.println("Done!\n");
-
+		
 		if(pause)
 			input = keyboard.nextLine();
 		else
 			System.out.println();
-
+			
 		System.out.println("--------------------------------------------------------------------");
 		System.out.println("   Old Connery -> Moore -> Lazenby -> Elba -> Dalton -> Craig ->");
 		System.out.println("        Connery -> Brosnan -> Allen");
