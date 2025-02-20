@@ -1,103 +1,61 @@
 public class Combined
 {
 	/**
-	* This method takes the head Node of two sorted singly-linked lists and
-	* combines them into a single, sorted doubly-linked list. This method
-	* should create the new, sorted doubly-linked list without destroying
-	* the information within or the ordering of the two singly-linked lists
-	* which were passed in.
-	* <p>
-	* The elements in the two singly-linked lists passed in are 
-	* guaranteed to be congruent and comparable with the other
-	* You may assume that you can use the Comparable interface between
-	* the elements of the two singly-linked lists which has been passed
-	* in with no conflicts.
-	*
-	* @param  list1 the head Node of one sorted singly-linked list
-	* @param  list2 the head Node of the other sorted singly-linked list
-	* @return       the DoubleNode at the head of the combined and sorted
-	*				doubly-linked list
-	* @see          Comparable
-	*/
+	 * This method takes the head Node of two sorted singly-linked lists and
+	 * combines them into a single, sorted doubly-linked list. This method
+	 * should create the new, sorted doubly-linked list without destroying
+	 * the information within or the ordering of the two singly-linked lists
+	 * which were passed in.
+	 * <p>
+	 * The elements in the two singly-linked lists passed in are
+	 * guaranteed to be congruent and comparable with the other
+	 * You may assume that you can use the Comparable interface between
+	 * the elements of the two singly-linked lists which has been passed
+	 * in with no conflicts.
+	 *
+	 * @param  list1 the head Node of one sorted singly-linked list
+	 * @param  list2 the head Node of the other sorted singly-linked list
+	 * @return       the DoubleNode at the head of the combined and sorted
+	 *				doubly-linked list
+	 * @see          Comparable
+	 */
 	@SuppressWarnings("unchecked")
 	public static DoubleNode<Comparable> combineSorted(Node<Comparable> list1, Node<Comparable> list2)
 	{
-		Node<Comparable> temp1 = list1;
-		Node<Comparable> temp2 = list2;
+		DoubleNode<Comparable> tempHead = new DoubleNode<>();
+		DoubleNode<Comparable> currNode = tempHead;
 
-		DoubleNode<Comparable> head = null;
-		DoubleNode<Comparable> currNode = head;
+		while (list1 != null || list2 != null) {
+			DoubleNode<Comparable> newNode;
 
-		while (temp1 != null || temp2 != null) {
-			if (temp1 == null) {
-				if (head == null) {
-					head = new DoubleNode<>(temp2.getElement(), null);
-
-					temp2 = temp2.getNext();
-
-					currNode = head;
-					continue;
-				}
-				DoubleNode<Comparable> nextNode = new DoubleNode<>(temp2.getElement(), currNode, null);
-
-				temp2 = temp2.getNext();
-
-				currNode.setNext(nextNode);
-				currNode = currNode.getNext();
-			} else if (temp2 == null) {
-				if (head == null) {
-					head = new DoubleNode<>(temp1.getElement(), null);
-
-					temp1 = temp1.getNext();
-
-					currNode = head;
-					continue;
-				}
-				DoubleNode<Comparable> nextNode = new DoubleNode<>(temp1.getElement(), currNode, null);
-
-				temp1 = temp1.getNext();
-
-				currNode.setNext(nextNode);
-				currNode = currNode.getNext();
-			}
-			else {
-				int result = temp1.getElement().compareTo(temp2.getElement());
-
-				if (result > 0) {
-					if (head == null) {
-						head = new DoubleNode<>(temp2.getElement(), null);
-
-						temp2 = temp2.getNext();
-
-						currNode = head;
-						continue;
-					}
-					DoubleNode<Comparable> nextNode = new DoubleNode<>(temp2.getElement(), currNode, null);
-					temp2 = temp2.getNext();
-
-					currNode.setNext(nextNode);
-					currNode = currNode.getNext();
-
+			if (list1 == null) {
+				newNode = new DoubleNode<>(list2.getElement());
+				list2 = list2.getNext();
+			} else if (list2 == null) {
+				newNode = new DoubleNode<>(list1.getElement());
+				list1 = list1.getNext();
+			} else {
+				int compareValue = list1.getElement().compareTo(list2.getElement());
+				if (compareValue <= 0) {
+					newNode = new DoubleNode<>(list1.getElement());
+					list1 = list1.getNext();
 				} else {
-					if (head == null) {
-						head = new DoubleNode<>(temp1.getElement(), null);
-
-						temp1 = temp1.getNext();
-
-						currNode = head;
-						continue;
-					}
-					DoubleNode<Comparable> nextNode = new DoubleNode<>(temp1.getElement(), currNode, null);
-
-					temp1 = temp1.getNext();
-
-					currNode.setNext(nextNode);
-					currNode = currNode.getNext();
+					newNode = new DoubleNode<>(list2.getElement());
+					list2 = list2.getNext();
 				}
 			}
+
+			currNode.setNext(newNode);
+			newNode.setPrevious(currNode);
+
+			currNode = currNode.getNext();
 		}
 
-		return head;
+		if (tempHead.getNext() == null)
+			return null;
+
+		tempHead.getNext().setPrevious(null);
+		return tempHead.getNext();
 	}
 
 
